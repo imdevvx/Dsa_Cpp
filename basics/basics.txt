@@ -1,0 +1,10 @@
+// variables and data types
+// input output
+// operators
+// conditionals
+// loops
+// functions
+// arrays
+// strings
+// reference and pass by ref
+// pointers

@@ -1,0 +1,80 @@
+=> Time & Space Complexity (Notation Big O) are ways to measure how efficient(Best, average, worst) an algorithm is. -:
+
+- Common complexities -:
+- O(1)
+- O(log n)
+- O(n)
+- O(n log n)
+- O(n²)
+
+=> Time Complexity tells us how the running time grows as the input size (n) increases.
+- Common Categories (Fastest to Slowest) -:
+
+- O(1): Constant Time: The execution time remains exactly the same, no matter how much data you give it.
+    eg: Accessing a specific elem in an array using its index number.
+
+- O(log n): Logarithmic Time: The execution time grows very slowly because the algorithm cuts the remaining data pool in half at each step.
+    eg: Binary search
+
+- O(n): Linear Time: The execution time grows in direct proportion to the size of the input.
+    eg: Linear search - checking each item in a collection one by one from the beginning until it finds the target or reaches the end.
+
+- O(n log n): Linearithmic Time: Moderately efficient scaling, occurs when an algorithm cuts a dataset in half recursively (logn steps) but must process every single element (n operations) at each step.
+    eg: Merge sort and Heap sort.
+
+- O(n²): The execution time grows exponentially with data size, typically caused by nesting loops inside other loops.
+    eg: Bubble sort - Comparing every single item in a list to every other item in that same list.
+
+=> Calculating Time Complexity
+
+- Ignore constants
+    for(int i = 0; i < 100; i++)
+    This loop always runs 100 times thus
+    Time Complexity: O(1)
+
+- Count loops
+    for(int i = 0; i < n; i++)
+    This loop runs n times thus
+    Time Complexity: O(n)
+
+- Nested loops
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < n; j++)
+    This loop runs n * n times 
+    Time Complexity: O(n²)
+
+- Consecutive loops add
+    for(int i = 0; i < n; i++)
+    ...
+    for(int i = 0; i < n; i++)
+    ...
+    These loops makes up => O(n + n) = O(2n) => Drop the constant factor
+    Time Complexity: O(n)
+
+- Keep the dominant term
+    O(n² + n + 100)
+    As n becomes very large, n² dominates.
+    Time Complexity: O(n²)
+
+
+
+
+
+- Space Complexity tells us how much extra memory an algorithm needs as the input size increases.
+
+- Constant Space
+- O(1) Space: The algorithm uses a fixed amount of memory. No matter how large the input grows, the RAM footprint stays exactly the same.
+    eg: Finding the maximum number in an array using a single max_value tracker "variable".
+    why: Because we only allocate memory for that one tracking variable, regardless of whether the array has 10 or 10,000,000 items.
+
+- Linear Space
+- O(n) space: The memory allocation scales directly and proportionally with the size of the input data.
+    eg: Copying an existing array into a new array, or using Merge Sort.
+    why: If the input array has n elements, the duplicate array or the merge process must allocate space for exactly n elements in memory.
+
+- Quadratic Space
+- O(n²) space: The memory grows at a squared rate relative to the input size.
+    eg: Creating a 2D grid or matrix mapping connections between items, like a social network friend graph.
+    why: If you have a city map with n intersections and you build a lookup table matching every intersection to every other intersection, you require an n x n memory grid.
+
+=> Always aim for the most efficient algorithm that still solves the problem correctly.
