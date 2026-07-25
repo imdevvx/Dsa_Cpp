@@ -1,0 +1,87 @@
+Standard Template Library -:
+- A powerful collection of pre-built, 
+  template-based classes and functions that provide ready-to-use data structures and algorithms.
+
+The STL consists of four primary components -:
+- Containers, Iterators, Algorithms, and Functors.
+
+
+(1) Containers (Data Structures): are objects that store and manage collections of data. 
+- They are divided into four main categories -:
+
+=> Sequence Containers: Store elements in a linear, sequential order.
+- vector: A dynamic array that automatically resizes during runtime.
+- deque: A double-ended queue that allows fast insertion and deletion at both ends.
+- list: A doubly-linked list. It allows fast insertions and deletions anywhere but lacks random access.
+- array: A fixed-size array
+
+=> Associative Containers: Store data in a sorted order (typically implemented using balanced binary trees).
+- set: Stores unique elements in sorted order.
+- multiset: Duplicates allowed.
+- map: Stores key-value pairs sorted by unique keys.
+- multimap: Duplicate keys allowed.
+
+=> Unordered Associative Containers: Utilize hash tables for faster performance but do not preserve any sorting order.
+- unordered_set: Stores unique elements using hash lookup
+- unordered_map: Stores key-value pairs with average constant-time O(1) lookup.
+
+=> Container Adaptors: Provide a restricted interface by wrapping around sequence containers to simulate specific behaviors.
+- stack: Follows Last-In, First-Out (LIFO) access.
+- queue: Follows First-In, First-Out (FIFO) access.
+
+=> CONTAINER COMPLEXITY TABLE -:
+| Container     | Search   | Insert    | Delete    | Random Access |
+| ------------- | -------- | --------- | --------- | ------------- |
+| vector        | O(n)     | O(1) end  | O(n)      | Yes           |
+| deque         | O(n)     | O(1) ends | O(1) ends | Yes           |
+| list          | O(n)     | O(1)      | O(1)      | No            |
+| set           | O(log n) | O(log n)  | O(log n)  | No            |
+| map           | O(log n) | O(log n)  | O(log n)  | No            |
+| unordered_set | O(1)*    | O(1)*     | O(1)*     | No            |
+| unordered_map | O(1)*    | O(1)*     | O(1)*     | No            |
+
+
+(2) Iterators: is an object that points to elements in a container. It acts like a generalized pointer.
+- begin(): Returns an iterator pointing to the first element.
+- end(): Returns an iterator pointing just past the last element.
+- rbegin(): Points to the very last elem.
+- rend(): Points to a theoretical placeholder one position before the first elem.
+
+[ Elem 0 ] -> [ Elem 1 ] -> [ Elem 2 ] -> [ past-the-end ]
+    ^                                            ^
+    |                                            |
+ .begin()                                      .end()
+
+[ past-the-beginning ] <- [ Elem 0 ] <- [ Elem 1 ] <- [ Elem 2 ]
+          ^                                               ^
+          |                                               |
+       .rend()                                        .rbegin()
+
+- Move iterator: vector<int>::iterator it; it++;
+- Types of iterator -:
+    Input iterator: Read only
+    Output iterator: Write only
+    Forward iterator: Only Forward movement
+    Bidirectional iterator: Forward and backward
+    Random access iterator: Jump anywhere
+
+
+(3) Algorithms: operate on containers using iterators. 
+  <algorithm> header provides highly optimized, generic functions to perform operations like sorting, searching, and modifying data.
+- eg functions -:
+- sort(start, end): Sorts elements in ascending order.
+- find(start, end, val): Searches for a value and returns its iterator.
+- reverse(start, end): Reverses the sequence of elements.
+- count(start, end, val): Counts occurences of value.
+- binary_search(start, end, val): Works only on sorted data. (Returns true or false)
+
+- min_element(start, end): Returns an iterator pointing to the min element inside the vector.
+- max_element(start, end): Returns an iterator pointing to the max element inside the vector.
+- minmax_element(start, end): Returns a pair of iterators: .first for min, .second for max
+- Access the value by dereferencing (*)
+
+- lower_bound(start, end, value): Returns an iterator to the first element that is greater than or equal to (≥) the value.
+- upper_bound(start, end, value): Returns an iterator to the first element that is strictly greater than (>) the value.
+
+
+(4) Functors (Function Objects): A functor is an object that behaves like a function because it overloads the () operator.
