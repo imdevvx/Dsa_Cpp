@@ -24,6 +24,8 @@ The STL consists of four primary components -:
 => Unordered Associative Containers: Utilize hash tables for faster performance but do not preserve any sorting order.
 - unordered_set: Stores unique elements using hash lookup
 - unordered_map: Stores key-value pairs with average constant-time O(1) lookup.
+// hash table is a data structure that stores information in key-value pairs, 
+// allowing you to insert, search, and delete data in constant time, O(1), on average
 
 => Container Adaptors: Provide a restricted interface by wrapping around sequence containers to simulate specific behaviors.
 - stack: Follows Last-In, First-Out (LIFO) access.
