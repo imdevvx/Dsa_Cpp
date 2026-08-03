@@ -1,30 +1,84 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-// By the time the inner loop finishes a single run, 
-// the absolute smallest remaining element is successfully locked into position i
+void mySort(vector<int> &nums);
+void bubbleSort(vector<int> &nums);
+void selectionSort(vector<int> &nums);
 
-/* Exchange Sort */
-int main(){
-    int arr[] = {3, 2, 4, 1, 5};
-    int size = sizeof(arr) / sizeof(arr[0]);
 
+void printVector(vector<int> vec)
+{
+    for (int num : vec)
+    {
+        cout << num << " ";
+    }
+}
+
+/* Selection Sort */
+int main()
+{
+    vector<int> nums = {5, 3, 6, 4, 1, 2};
+
+    // mySort(nums);
+    // bubbleSort(nums);
+    // selectionSort(nums);
+    
+    printVector(nums);
+
+    return 0;
+}
+
+void mySort(vector<int> &nums)
+{
+    int size = nums.size();
     for (int i = 0; i < size; i++)
     {
         for (int j = i + 1; j < size; j++)
         {
-            if(arr[i] > arr[j]){
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
+            if (nums[i] > nums[j])
+            {
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
             }
         }
     }
-
-    for (int i = 0; i < size; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    
-    return 0;
 }
+
+void bubbleSort(vector<int> &nums)
+{
+    int size = nums.size();
+    for (int i = 0; i < size - 1; i++)
+    {
+        for (int j = 0; j < size - i - 1; j++)
+        {
+            if (nums[j] > nums[j + 1])
+            {
+                int temp = nums[j];
+                nums[j] = nums[j + 1];
+                nums[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void selectionSort(vector<int> &nums)
+{
+    int size = nums.size();
+    for (int i = 0; i < size - 1; i++)
+    {
+        int minIndex = i;
+
+        for (int j = i + 1; j < size; j++)
+        {
+            if (nums[j] < nums[minIndex])
+            {
+                minIndex = j;
+            }
+        }
+
+        swap(nums[i], nums[minIndex]);
+    }
+}
+
