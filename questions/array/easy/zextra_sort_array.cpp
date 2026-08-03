@@ -15,7 +15,6 @@ void printVector(vector<int> vec)
     }
 }
 
-/* Selection Sort */
 int main()
 {
     vector<int> nums = {5, 3, 6, 4, 1, 2};
@@ -23,7 +22,7 @@ int main()
     // mySort(nums);
     // bubbleSort(nums);
     // selectionSort(nums);
-    
+
     printVector(nums);
 
     return 0;
