@@ -17,12 +17,26 @@ and the last n elements are set to 0 and should be ignored. nums2 has a length o
 
 void merge(vector<int> &nums1, int m, vector<int> &nums2, int n)
 {
-    nums1.resize(m); // remove the placeholder elements
-    for (int x : nums2)
+    // approach 1
+    // nums1.resize(m); // remove the placeholder elements
+    // for (int x : nums2)
+    // {
+    //     nums1.push_back(x);
+    // }
+    // sort(nums1.begin(), nums1.end());
+    
+
+
+    // approach 2
+    int nums1Ptr = m;
+    int nums2Ptr = n;
+    
+    for (int i = m; i < m + n; i++)
     {
-        nums1.push_back(x);
+        nums1[i] = nums2[i - n];
     }
     sort(nums1.begin(), nums1.end());
+    
 
     for (int i = 0; i < nums1.size(); i++)
     {

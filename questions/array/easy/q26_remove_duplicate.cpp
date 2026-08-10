@@ -7,29 +7,25 @@ using namespace std;
 // The relative order of the elements should be kept the same.
 // After removing duplicates, return the number of unique elements k.
 
-int removeDuplicates(vector<int> &nums);
+int removeDuplicates(vector<int> &nums)
+{
+    int insertIndex = 1; // number 0 will be always unique
+
+    for (int i = 1; i < nums.size(); i++)
+    {
+        if (nums[i] != nums[i - 1]){
+            nums[insertIndex] = nums[i];
+            insertIndex++;
+        }
+    }
+
+    return insertIndex; 
+}
 
 int main()
 {
-    vector <int> nums = {1, 1, 2, 3, 4, 5, 5};
+    vector<int> nums = {1, 1, 2, 3, 4, 5, 5};
     int result = removeDuplicates(nums);
     cout << result;
     return 0;
-}
-
-int removeDuplicates(vector<int> &nums)
-{
-    if (nums.empty())
-        return 0;
-
-    int j = 1; // no. 0 will be always unique
-    for (int i = 1; i < nums.size(); i++)
-    {
-        if (nums[i] != nums[i - 1]) // unique element found
-        {
-            nums[j] = nums[i];
-            j++;
-        }
-    }
-    return j; // The total number of unique elements
 }
