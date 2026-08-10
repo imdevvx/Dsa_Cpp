@@ -1,0 +1,42 @@
+/*
+A linked list is a collection of elements called nodes
+
+Each node contains -:
+Data — the value we want to store.
+Next — a pointer that tells us where the next node is.
+eg => [10 | next] → [20 | next] → [30 | next] → NULL
+
+Unlike an array, 
+the nodes don't have to be stored next to each other in memory they can be scattered anywhere in the memory
+
+We can create a node like this -:
+struct Node {
+    int data;
+    Node* next;
+};
+
+We can dynamically create a node -:
+Node* first = new Node();
+first->data = 10;
+first->next = NULL;
+=> first is called the head of the linked list
+
+Creating multiple nodes -:
+suppose we want: 10 → 20 → 30 → NULL
+Node* first = new Node();
+Node* second = new Node();
+Node* third = new Node();
+
+first->data = 10;
+second->data = 20;
+third->data = 30;
+
+first->next = second;
+second->next = third;
+third->next = NULL;
+
+
+
+Because first is a pointer to a Node we use -> and not .
+first->data is same as (*first).data
+*/
