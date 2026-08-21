@@ -16,7 +16,7 @@ int removeElement(vector<int> &nums, int val)
     {
         if (nums[i] != val)
         {
-            nums[j] = nums[i]; // left shift
+            nums[j] = nums[i];
             j++;
         }
     }

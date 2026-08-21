@@ -1,11 +1,38 @@
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 using namespace std;
 
 // Given an array of integers nums and an integer target,
 // return indices of the two numbers such that they add up to target.
 
-vector<int> twoSum(vector<int> &nums, int target);
+vector<int> twoSum(vector<int> &nums, int target)
+{
+    // for (int i = 0; i < nums.size(); i++)
+    // {
+    //     for (int j = i + 1; j < nums.size(); j++)
+    //     {
+    //         if (nums[i] + nums[j] == target)
+    //         {
+    //             return {i, j};
+    //         }
+    //     }
+    // }
+    // return {}; // return empty vector if no match is found
+
+    unordered_map<int, int> seen;
+
+    for (int i = 0; i < nums.size(); i++)
+    {
+        int needed = target - nums[i];
+        if (seen.find(needed) != seen.end())
+        {
+            return {seen[needed], i};
+        }
+        seen[nums[i]] = i;
+    }
+    return {};
+}
 
 int main()
 {
@@ -17,21 +44,6 @@ int main()
     {
         cout << result[i] << " ";
     }
-    
-    return 0;
-}
 
-vector<int> twoSum(vector<int> &nums, int target)
-{
-    for (int i = 0; i < nums.size(); i++)
-    {
-        for (int j = i + 1; j < nums.size(); j++)
-        {
-            if (nums[i] + nums[j] == target)
-            {
-                return {i, j};
-            }
-        }
-    }
-    return {}; // return empty vector if no match is found
+    return 0;
 }
