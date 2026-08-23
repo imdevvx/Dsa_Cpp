@@ -36,7 +36,30 @@ second->next = third;
 third->next = NULL;
 
 
-
 Because first is a pointer to a Node we use -> and not .
 first->data is same as (*first).data
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

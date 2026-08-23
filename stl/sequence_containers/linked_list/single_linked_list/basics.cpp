@@ -20,11 +20,13 @@ class LL
 {
 private:
     LLnode *head; // head is not a node itself, but a ptr that sores the address of the first node (LLnode).
+    int list_size;
 
 public:
     LL()
     {
         head = 0; // nullPtr
+        list_size = 0;
     }
 
     void insert_at_begin(int num)
@@ -36,13 +38,14 @@ public:
         if (head == 0)
         {
             head = p; // make head point to the new node
+            list_size++;
             return;
         }
-        else
-        {
-            p->next = head; // since p is a ptr we use p->next to access member of LLnode.
-            head = p;       // make head point to the new node
-        }
+
+        p->next = head; // since p is a ptr we use p->next to access member of LLnode.
+        head = p;       // make head point to the new node
+
+        list_size++;
 
         /*
         Explanantion -:
@@ -86,6 +89,7 @@ public:
         if (head == 0)
         {
             head = p; // make head point to the first node
+            list_size++;
             return;
         }
 
@@ -97,10 +101,18 @@ public:
         }
 
         q->next = p; // change the last node address (next) to new_node (p)
+
+        list_size++;
     }
 
     void insert_at_pos(int num, int position)
     {
+        if (position <= 0)
+        {
+            cout << "Invalid position" << endl;
+            return;
+        }
+
         if (position == 1)
         {
             insert_at_begin(num);
@@ -116,7 +128,7 @@ public:
                 cout << "Position out of bounds" << endl;
                 return;
             }
-            q = q->next;
+            q = q->next; // the node just befor the position
         }
 
         if (q == 0)
@@ -129,24 +141,42 @@ public:
 
         p->next = q->next; // connect new node to the next node
         q->next = p;       // connect previous node to new node
+
+        list_size++;
     }
 
-    void search(int element)
+    int search(int element)
     {
         LLnode *p = head;
+        int position = 0;
+
         while (p != 0 && p->data != element)
         {
             p = p->next;
+            position++;
         }
+
         if (p == 0)
         {
-            cout << "Node not found" << endl;
+            return -1;
+        }
+
+        return position;
+    }
+
+    void delete_at_beg()
+    {
+        if (head == 0)
+        {
+            cout << "List is empty" << endl;
             return;
         }
-        else
-        {
-            cout << "Element found at address: " << p;
-        }
+
+        LLnode *p = head;
+        head = p->next;
+        delete p;
+
+        list_size--;
     }
 
     void delete_at_end()
@@ -165,6 +195,7 @@ public:
         {
             delete p;
             head = 0;
+            list_size--;
             return;
         }
 
@@ -176,6 +207,62 @@ public:
         }
         q->next = p->next;
         delete p;
+
+        list_size--;
+    }
+
+    void delete_at_pos(int position)
+    {
+        LLnode *q = head;
+        LLnode *r = q; // Node just befor q
+
+        if (head == 0)
+        {
+            cout << "List is empty" << endl;
+            return;
+        }
+
+        if (position == 0)
+        {
+            delete_at_beg();
+            return;
+        }
+
+        for (int i = 0; i < position; i++)
+        {
+            r = q;
+            q = q->next;
+
+            if (q == 0)
+            {
+                cout << "Position out of bounds" << endl;
+                return;
+            }
+        }
+
+        r->next = q->next;
+        delete q;
+
+        list_size--;
+    }
+
+    int length()
+    {
+        return list_size;
+        
+        /*
+        This function is O(N) (Linear Time). This can slow down the program if we call length() frequently.
+        The optimal approach is O(1) (Constant time). Where we track the size automatically whenever we insert or delete a node.
+
+        LLnode *p = head;
+        int count = 0;
+        while (p != 0)
+        {
+            p = p->next;
+            count++;
+        }
+        return count;
+        */
     }
 
     void display()
@@ -219,10 +306,18 @@ int main()
     list.display();
 
     cout << "\nSearching for 15:" << endl;
-    list.search(15);
+    int position = list.search(15);
+    if (position != -1)
+        cout << "Element found at position: " << position << endl;
+    else
+        cout << "Element not found" << endl;
 
     cout << "\n\nSearching for 100:" << endl;
-    list.search(100);
+    auto position2 = list.search(100);
+    if (position2 != -1)
+        cout << "Element found at position: " << position2 << endl;
+    else
+        cout << "Element not found" << endl;
 
     cout << "\nDeleting from end:" << endl;
     list.delete_at_end();
@@ -230,3 +325,20 @@ int main()
 
     return 0;
 }
+
+/*
+| Operation           |     Time |
+| ------------------- | -------: |
+| Insert at beginning |   O(1)   |
+| Insert at end       |   O(n)   |
+| Insert at position  |   O(n)   |
+| Search              |   O(n)   |
+| Display             |   O(n)   |
+| Delete beginning    |   O(1)   |
+| Delete end          |   O(n)   |
+| Delete position     |   O(n)   |
+| Length              |O(n), O(1)|
+| Find middle         |   O(n)   |
+| Reverse             |   O(n)   |
+
+*/
