@@ -1,0 +1,8 @@
+| Feature       | Stack | Queue      | Deque      |
+| ------------- | ----- | ---------- | ---------- |
+| Principle     | LIFO  | FIFO       | Both ends  |
+| Insert        | Top   | Back       | Front/Back |
+| Remove        | Top   | Front      | Front/Back |
+| Access        | Top   | Front/Back | Front/Back |
+| Random access | ❌    | ❌        | ✅         |
+| Iterators     | ❌    | ❌        | ✅         |
