@@ -1,0 +1,87 @@
+Trees: A Tree is a non-linear, hierarchical data structure consisting of nodes connected by edges.
+           Unlike arrays, linked lists, stacks, and queues, trees represent data in a hierarchical relationship.
+Basic Terminolog -:
+
+Root: The topmost node of a tree.
+Parent: A node that has one or more children.
+Child: A node directly connected below another node.
+Leaf / External Node: A node with no children.
+Sibling: Nodes having the same parent.
+Edge: Connection between two nodes.
+Subtree: A tree formed by a node and all of its descendants.
+Depth: Number of edges from the root to a node.
+Height: Number of edges on the longest path from a node to a leaf.
+Degree: Number of children of a node.
+             1
+           /   \
+          2     3
+         / \     \
+        4   5     6
+
+
+
+
+Binary Tree: A Binary Tree is a tree in which each node has at most two children.
+The two children are called: Left child, Right child
+
+             1
+           /   \
+          2     3
+         / \   / \
+        4   5 6   7
+
+Node structure -:
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = nullptr;
+        right = nullptr;
+    }
+};
+
+
+
+
+TYPES OF BINARY TREE -:
+
+=> Full Binary Tree: Every node has either 0 or 2 children.
+=> Complete Binary Tree: All levels are completely filled except possibly the last, and the last level is filled from left to right.
+=> Perfect Binary Tree: Every internal node has exactly 2 children, and all leaf nodes are at the same level.
+    For a perfect binary tree:
+        Nodes at level L = 2^L
+        Total nodes for height h = 2^(h+1) - 1
+=> Balanced Binary Tree: A binary tree where the height of the left and right subtrees is kept reasonably balanced.
+    |height(left) - height(right)| <= 1
+=> Degenerate / Skewed Binary Tree: Every node has only one child.
+    behaves similarly to a linked list.
+
+
+
+
+Binary Tree Traversals: There are mainly four important traversals.
+            1
+           / \
+          2   3
+         / \
+        4   5
+
+    DFS (Depth First Search)
+    1. Preorder: (NLR) Root → Left → Right => Output: 1 2 4 5 3
+    2. Inorder: (LNR) Left → Root → Right => Output: 4 2 5 1 3
+        Inorder traversal of a Binary Search Tree (BST) gives elements in sorted order
+    3. Postorder: (LRN) Left → Right → Root => Output: 4 5 2 3 1
+
+    BFS (Breadth First Search)
+    4. Level Order Traversal: visit nodes level by level => Output: 1 2 3 4 5 6
+
+
+
+
+Binary Search Tree (BST): A Binary Search Tree is a binary tree that follows the ordering property.
+    Left subtree < Root < Right subtree
+    All nodes in the Left Subtree must be less than (<) the Root key
+    All nodes in the Right Subtree must be greater than (>) the Root key.
